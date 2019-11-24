@@ -1,0 +1,16 @@
+language: ruby
+
+sudo: false
+
+cache: bundler
+
+before_install:
+  - gem install bundler -v 1.17.2
+
+rvm:
+  - 2.6
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
