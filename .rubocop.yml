@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
+# Allow compact style in the tests.
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*'
+
+# Don't require doc comments in general.
+Style/Documentation:
+  Enabled: false
+
+# Allow complex methods
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 20
+
+# Allow long methods
+Metrics/MethodLength:
+  Max: 50
+
+# Allow short param names.
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+# Allow chaining blocks for solution efficiency.
+Style/MultilineBlockChain:
+  Enabled: false
