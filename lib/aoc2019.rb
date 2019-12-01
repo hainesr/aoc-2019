@@ -15,7 +15,8 @@ module AOC2019
   INPUT_DIR = ::File.expand_path('../etc', __dir__)
 
   DAY_MAP = [
-    nil
+    nil,
+    'rocket_equation'
   ].freeze
 
   def self.class_from_day(day)
