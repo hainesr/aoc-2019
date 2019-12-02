@@ -16,7 +16,8 @@ module AOC2019
 
   DAY_MAP = [
     nil,
-    'rocket_equation'
+    'rocket_equation',
+    'program_alarm'
   ].freeze
 
   def self.class_from_day(day)
