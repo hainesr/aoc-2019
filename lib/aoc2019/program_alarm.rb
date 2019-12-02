@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Advent of Code 2019
 #
 # Robert Haines
@@ -16,6 +18,22 @@ module AOC2019
       prog[2] = 2
 
       puts "Part 1: #{run_program(prog)[0]}"
+
+      done = false
+      (60..80).each do |noun|
+        (60..80).each do |verb|
+          prog = input.dup
+          prog[1] = noun
+          prog[2] = verb
+
+          if run_program(prog)[0] == 19_690_720
+            done = true
+            puts "Part 2: #{100 * noun + verb}"
+            break
+          end
+          break if done
+        end
+      end
     end
 
     def run_program(prog)
