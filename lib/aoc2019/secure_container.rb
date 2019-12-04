@@ -13,11 +13,14 @@ module AOC2019
     def run
       input = '172851-675869'.split('-').map(&:to_i)
 
-      puts "Part 1: #{count_passwords(input)}"
+      results = count_passwords(input)
+      puts "Part 1: #{results[0]}"
+      puts "Part 2: #{results[1]}"
     end
 
     def count_passwords(range)
-      count = 0
+      count_all = 0
+      count_pair = 0
 
       (1..6).each do |a|
         (a..9).each do |b|
@@ -30,8 +33,10 @@ module AOC2019
                         d * 100 + e * 10 + f
                   break if num > range[1]
                   next if num < range[0]
+                  next unless repeated_digits?(digits)
 
-                  count += 1 if repeated_digits?(digits)
+                  count_all += 1
+                  count_pair += 1 if repeated_pair?(digits)
                 end
               end
             end
@@ -39,11 +44,15 @@ module AOC2019
         end
       end
 
-      count
+      [count_all, count_pair]
     end
 
     def repeated_digits?(digits)
       digits.group_by { |d| d }.values.map(&:length).max > 1
+    end
+
+    def repeated_pair?(digits)
+      digits.group_by { |d| d }.values.map(&:length).include? 2
     end
   end
 end

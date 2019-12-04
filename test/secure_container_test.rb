@@ -21,4 +21,10 @@ class AOC2019::SecureContainerTest < Minitest::Test
     refute @sc.repeated_digits?([1, 2])
     refute @sc.repeated_digits?([1, 2, 3, 4, 5, 6])
   end
+
+  def test_repeated_pair
+    assert @sc.repeated_pair?([1, 1, 2, 2, 3, 3])
+    assert @sc.repeated_pair?([1, 1, 1, 1, 2, 2])
+    refute @sc.repeated_pair?([1, 2, 3, 4, 4, 4])
+  end
 end
