@@ -18,7 +18,7 @@ module AOC2019
     nil,
     'rocket_equation',
     'program_alarm',
-    nil,
+    'crossed_wires',
     'secure_container'
   ].freeze
 
