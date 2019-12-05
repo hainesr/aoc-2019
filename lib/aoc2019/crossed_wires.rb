@@ -18,11 +18,18 @@ module AOC2019
       intersections = (wire1.to_set & wire2.to_set).to_a
 
       puts "Part 1: #{closest_intersection(intersections)}"
+      puts "Part 2: #{shortest_intersection(wire1, wire2, intersections)}"
     end
 
     def closest_intersection(intersections)
       intersections.map do |i|
         i.split(',').map(&:to_i).reduce(0) { |acc, c| acc + c.abs }
+      end.min
+    end
+
+    def shortest_intersection(wire1, wire2, intersections)
+      intersections.map do |int|
+        wire1.find_index(int) + 1 + wire2.find_index(int) + 1
       end.min
     end
 
