@@ -19,7 +19,8 @@ module AOC2019
     'rocket_equation',
     'program_alarm',
     'crossed_wires',
-    'secure_container'
+    'secure_container',
+    'sunny_asteroids'
   ].freeze
 
   def self.class_from_day(day)
