@@ -21,7 +21,8 @@ module AOC2019
     'crossed_wires',
     'secure_container',
     'sunny_asteroids',
-    'universal_orbit_map'
+    'universal_orbit_map',
+    'amplification_circuit'
   ].freeze
 
   def self.class_from_day(day)
