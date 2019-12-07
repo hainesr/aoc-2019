@@ -44,3 +44,7 @@ Naming/UncommunicativeMethodParamName:
 # Allow chaining blocks for solution efficiency.
 Style/MultilineBlockChain:
   Enabled: false
+
+# Turn this nonsense off.
+Style/WordArray:
+  EnforcedStyle: brackets

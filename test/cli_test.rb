@@ -17,11 +17,11 @@ class AOC2019::CLITest < Minitest::Test
 
     refute ::AOC2019::Extra::CLI.parse_params([])
 
-    %w[1 2 25].each do |p|
+    ['1', '2', '25'].each do |p|
       assert_equal [p.to_i], ::AOC2019::Extra::CLI.parse_params([p])
     end
 
     assert_equal [1, 2, 25],
-                 ::AOC2019::Extra::CLI.parse_params(%w[1 2 25])
+                 ::AOC2019::Extra::CLI.parse_params(['1', '2', '25'])
   end
 end

@@ -11,8 +11,8 @@ require 'aoc2019/crossed_wires'
 
 class AOC2019::CrossedWiresTest < Minitest::Test
   STEPS = [
-    %w[R8 U5 L5 D3],
-    %w[U7 R6 D4 L4]
+    ['R8', 'U5', 'L5', 'D3'],
+    ['U7', 'R6', 'D4', 'L4']
   ].freeze
 
   PATHS = [
