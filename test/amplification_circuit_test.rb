@@ -18,6 +18,14 @@ class AOC2019::AmplificationCircuitTest < Minitest::Test
       '1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0', 65_210]
   ].freeze
 
+  TEST_FEEDBACK_PROGS = [
+    ['3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,' \
+      '27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5', 139_629_729],
+    ['3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,' \
+      '-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,' \
+      '53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10', 18_216]
+  ].freeze
+
   def setup
     @ac = ::AOC2019::AmplificationCircuit.new
   end
@@ -26,6 +34,13 @@ class AOC2019::AmplificationCircuitTest < Minitest::Test
     TEST_PROGS.each do |input, max|
       prog = input.split(',').map(&:to_i)
       assert_equal(max, @ac.optimal_phase_setting(prog))
+    end
+  end
+
+  def test_optimal_feedback_setting
+    TEST_FEEDBACK_PROGS.each do |input, max|
+      prog = input.split(',').map(&:to_i)
+      assert_equal(max, @ac.optimal_feedback_setting(prog))
     end
   end
 end

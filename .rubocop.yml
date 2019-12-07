@@ -22,6 +22,11 @@ Metrics/BlockLength:
     - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+    - 'lib/aoc2019/amplification_circuit.rb'
+
 Metrics/CyclomaticComplexity:
   Max: 20
   Exclude:

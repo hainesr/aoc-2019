@@ -14,6 +14,7 @@ module AOC2019
       prog = read_input_file.chomp.split(',').map(&:to_i)
 
       puts "Part 1: #{optimal_phase_setting(prog)}"
+      puts "Part 2: #{optimal_feedback_setting(prog)}"
     end
 
     def optimal_phase_setting(prog)
@@ -22,18 +23,53 @@ module AOC2019
       end.max
     end
 
+    def optimal_feedback_setting(prog)
+      [5, 6, 7, 8, 9].permutation(5).each_with_object([]) do |setting, acc|
+        acc << feedback_setting(prog, setting)
+      end.max
+    end
+
     def test_setting(prog, setting)
       out = 0
 
       setting.each do |s|
-        out = run_program(prog.dup, [s, out])
+        out, = run_program(prog.dup, [s, out])
       end
 
       out
     end
 
-    def run_program(prog, inputs)
+    def feedback_setting(prog, settings)
+      a, b, c, d, e = settings
+      all_state = [
+        [prog.dup, [a, 0], 0],
+        [prog.dup, [b], 0],
+        [prog.dup, [c], 0],
+        [prog.dup, [d], 0],
+        [prog.dup, [e], 0]
+      ]
+
       i = 0
+      loop do
+        prog, inputs, in_pc = all_state[i]
+        out, pc, state = run_program(prog, inputs, in_pc)
+
+        all_state[i][2] = pc
+
+        if i == 4
+          return out if state == :halt
+
+          i = 0
+        else
+          i += 1
+        end
+        all_state[i][1] << out
+      end
+    end
+
+    def run_program(prog, inputs, pc = 0)
+      state = :running
+      i = pc
       out = nil
 
       loop do
@@ -56,7 +92,13 @@ module AOC2019
           prog[prog[i + 3]] = param1 * param2
           i += 4
         when 3
-          prog[prog[i + 1]] = inputs.shift
+          input = inputs.shift
+          if input.nil?
+            state = :paused
+            break
+          end
+
+          prog[prog[i + 1]] = input
           i += 2
         when 4
           param1 = im1 ? prog[i + 1] : prog[prog[i + 1]]
@@ -89,11 +131,12 @@ module AOC2019
           prog[prog[i + 3]] = param1 == param2 ? 1 : 0
           i += 4
         when 99
+          state = :halt
           break
         end
       end
 
-      out
+      [out, i, state]
     end
   end
 end
