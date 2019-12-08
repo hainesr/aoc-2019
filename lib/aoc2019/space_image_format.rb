@@ -15,6 +15,26 @@ module AOC2019
       image = image_layers(data, 25, 6)
 
       puts "Part 1: #{image_checksum(image)}"
+      puts 'Part 2:'
+      image_output(image_render(image), 25, 6)
+    end
+
+    def image_output(image, w, _)
+      image.each_slice(w) do |line|
+        puts line.map { |l| l.zero? ? ' ' : '#' }.join
+      end
+    end
+
+    def image_render(image)
+      result = image[0]
+
+      image[1..-1].each do |layer|
+        layer.each_with_index do |p, i|
+          result[i] = p if result[i] == 2
+        end
+      end
+
+      result
     end
 
     def image_checksum(image)
