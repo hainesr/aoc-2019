@@ -22,7 +22,8 @@ module AOC2019
     'secure_container',
     'sunny_asteroids',
     'universal_orbit_map',
-    'amplification_circuit'
+    'amplification_circuit',
+    'space_image_format'
   ].freeze
 
   def self.class_from_day(day)
