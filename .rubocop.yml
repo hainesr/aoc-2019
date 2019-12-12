@@ -56,5 +56,9 @@ Style/MultilineBlockChain:
   Enabled: false
 
 # Turn this nonsense off.
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Turn this nonsense off as well.
 Style/WordArray:
   EnforcedStyle: brackets

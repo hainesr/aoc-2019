@@ -23,7 +23,11 @@ module AOC2019
     'sunny_asteroids',
     'universal_orbit_map',
     'amplification_circuit',
-    'space_image_format'
+    'space_image_format',
+    nil,
+    nil,
+    nil,
+    'n_body_problem'
   ].freeze
 
   def self.class_from_day(day)
