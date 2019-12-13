@@ -13,13 +13,11 @@ Style/Documentation:
 Metrics/AbcSize:
   Max: 50
   Exclude:
-    - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
 Metrics/BlockLength:
   Exclude:
     - 'test/**/*'
-    - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
 Metrics/ClassLength:
@@ -30,13 +28,11 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 20
   Exclude:
-    - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
 Metrics/PerceivedComplexity:
   Max: 20
   Exclude:
-    - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
 # Allow long methods
@@ -44,7 +40,6 @@ Metrics/MethodLength:
   Max: 50
   Exclude:
     - 'test/**/*'
-    - 'lib/aoc2019/sunny_asteroids.rb'
     - 'lib/aoc2019/amplification_circuit.rb'
 
 # Allow short param names.
