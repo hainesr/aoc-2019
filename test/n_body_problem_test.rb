@@ -22,4 +22,10 @@ class AOC2019::NBodyProblemTest < Minitest::Test
     system.steps(10)
     assert_equal(179, system.energy)
   end
+
+  def test_coords_for
+    system = ::AOC2019::System.create(SYSTEM1)
+    assert_equal([-1, 2, 4, 3], system.coords_for(:x))
+    assert_equal([2, -7, 8, -1], system.coords_for('z'))
+  end
 end

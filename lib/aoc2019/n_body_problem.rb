@@ -20,8 +20,10 @@ module AOC2019
     def run
       system = System.create(INPUT)
       system.steps(1000)
-
       puts "Part 1: #{system.energy}"
+
+      system = System.create(INPUT)
+      puts "Part 2: #{system.repeat}"
     end
   end
 
@@ -44,6 +46,29 @@ module AOC2019
 
     def energy
       @bodies.reduce(0) { |acc, b| acc + b.energy }
+    end
+
+    def repeat
+      [:x, :y, :z].map do |dim|
+        i = 0
+        t = 0
+        seen = {}
+
+        loop do
+          step_v
+          step_p
+          i += 1
+          hash = coords_for(dim).pack('ssss')
+
+          if seen[hash].nil?
+            seen[hash] = i
+          elsif i - seen[hash] == 1
+            ord = t
+            t = i - ord
+            break t if ord.positive?
+          end
+        end
+      end.reduce(1, :lcm) * 2
     end
 
     def steps(n)
@@ -69,6 +94,10 @@ module AOC2019
 
     def step_p
       @bodies.each(&:move)
+    end
+
+    def coords_for(dim)
+      @bodies.map { |b| b.send(dim.to_sym) }
     end
 
     def self.create(data)
