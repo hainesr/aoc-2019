@@ -25,20 +25,22 @@ module AOC2019
       end
 
       def param(n, modes)
-        raw = @memory[@pc + n]
+        raw = @memory.fetch(@pc + n, 0)
         case modes[n - 1]
         when 0
-          @memory[raw]
+          @memory.fetch(raw, 0)
         when 1
           raw
         when 2
-          @memory[raw + @rb]
+          @memory.fetch(raw + @rb, 0)
         end
       end
 
-      def run(input)
+      def run(*input)
+        input.flatten!
+
         loop do
-          instruction = @memory[@pc].digits.reverse
+          instruction = @memory.fetch(@pc, 0).digits.reverse
           (5 - instruction.length).times { instruction.unshift(0) }
 
           op = instruction[-2] * 10 + instruction[-1]
@@ -52,7 +54,7 @@ module AOC2019
             @memory[@memory[@pc + 3]] = param(1, modes) * param(2, modes)
             @pc += 4
           when 3
-            @memory[@memory[@pc + 1]] = input
+            @memory[@memory[@pc + 1]] = input.shift
             @pc += 2
           when 4
             puts param(1, modes)
@@ -77,6 +79,9 @@ module AOC2019
             @memory[@memory[@pc + 3]] =
               param(1, modes) == param(2, modes) ? 1 : 0
             @pc += 4
+          when 9
+            @rb += param(1, modes)
+            @pc += 2
           when 99
             break
           end

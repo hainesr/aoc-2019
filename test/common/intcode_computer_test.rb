@@ -94,4 +94,36 @@ class AOC2019::Common::IntcodeComputerTest < Minitest::Test
       computer.run(0)
     end
   end
+
+  def test_relative_base
+    program = '109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99'
+    computer = AOC2019::Common::IntcodeComputer.new(program)
+    assert_output(
+      /109\n1\n204\n-1\n1001\n100\n1\n100\n1008\n100\n16\n101\n1006\n101\n0\n99/
+    ) do
+      computer.run
+    end
+  end
+
+  def test_large_memory_support
+    program = '4,1000,99'
+    computer = AOC2019::Common::IntcodeComputer.new(program)
+    assert_output(/0/) do
+      computer.run
+    end
+  end
+
+  def test_large_number_support
+    program = '1102,34915192,34915192,7,4,7,99,0'
+    computer = AOC2019::Common::IntcodeComputer.new(program)
+    assert_output(/1219070632396864/) do
+      computer.run
+    end
+
+    program = '104,1125899906842624,99'
+    computer = AOC2019::Common::IntcodeComputer.new(program)
+    assert_output(/1125899906842624/) do
+      computer.run
+    end
+  end
 end
