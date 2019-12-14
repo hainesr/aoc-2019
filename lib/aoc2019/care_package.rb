@@ -15,6 +15,9 @@ module AOC2019
       computer = Common::IntcodeComputer.new(read_input_file)
       state = board_state(computer.run)
       puts "Part 1: #{state.values.count(2)}"
+
+      computer.reset!
+      puts "Part 2: #{play(computer)[-1]}"
     end
 
     def board_state(input)
@@ -25,6 +28,17 @@ module AOC2019
       end
 
       board
+    end
+
+    # I've faked the input so that there's just one long paddle :-)
+    # So this just keeps looping, keeping the joystick still, until
+    # the game exits...
+    def play(computer)
+      computer.memory[0] = 2
+      loop do
+        output = computer.run(0)
+        break output if computer.done?
+      end
     end
   end
 end
