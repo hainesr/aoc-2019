@@ -43,6 +43,7 @@ module AOC2019
 
       def run(*input)
         input.flatten!
+        output = []
 
         loop do
           instruction = @memory.fetch(@pc, 0).digits.reverse
@@ -62,7 +63,7 @@ module AOC2019
             @memory[write_param(1, modes)] = input.shift
             @pc += 2
           when 4
-            puts param(1, modes)
+            output << param(1, modes)
             @pc += 2
           when 5
             if param(1, modes).zero?
@@ -91,6 +92,8 @@ module AOC2019
             break
           end
         end
+
+        output
       end
     end
   end

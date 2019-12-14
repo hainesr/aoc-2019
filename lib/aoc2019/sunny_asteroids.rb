@@ -14,12 +14,10 @@ module AOC2019
     def run
       computer = Common::IntcodeComputer.new(read_input_file)
 
-      puts 'Part 1:'
-      computer.run(1)
+      puts "Part 1: #{computer.run(1)[-1]}"
 
-      puts 'Part 2:'
       computer.reset!
-      computer.run(5)
+      puts "Part 2: #{computer.run(5)[0]}"
     end
   end
 end
