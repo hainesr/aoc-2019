@@ -36,6 +36,11 @@ module AOC2019
         end
       end
 
+      def write_param(n, modes)
+        raw = @memory.fetch(@pc + n, 0)
+        modes[n - 1] == 2 ? raw + @rb : raw
+      end
+
       def run(*input)
         input.flatten!
 
@@ -48,13 +53,13 @@ module AOC2019
 
           case op
           when 1
-            @memory[@memory[@pc + 3]] = param(1, modes) + param(2, modes)
+            @memory[write_param(3, modes)] = param(1, modes) + param(2, modes)
             @pc += 4
           when 2
-            @memory[@memory[@pc + 3]] = param(1, modes) * param(2, modes)
+            @memory[write_param(3, modes)] = param(1, modes) * param(2, modes)
             @pc += 4
           when 3
-            @memory[@memory[@pc + 1]] = input.shift
+            @memory[write_param(1, modes)] = input.shift
             @pc += 2
           when 4
             puts param(1, modes)
@@ -72,11 +77,11 @@ module AOC2019
               @pc += 3
             end
           when 7
-            @memory[@memory[@pc + 3]] =
+            @memory[write_param(3, modes)] =
               param(1, modes) < param(2, modes) ? 1 : 0
             @pc += 4
           when 8
-            @memory[@memory[@pc + 3]] =
+            @memory[write_param(3, modes)] =
               param(1, modes) == param(2, modes) ? 1 : 0
             @pc += 4
           when 9
