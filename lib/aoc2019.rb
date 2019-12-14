@@ -27,7 +27,8 @@ module AOC2019
     'sensor_boost',
     nil,
     nil,
-    'n_body_problem'
+    'n_body_problem',
+    'care_package'
   ].freeze
 
   def self.class_from_day(day)
