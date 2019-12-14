@@ -17,8 +17,11 @@ class AOC2019::Common::IntcodeComputerTest < Minitest::Test
 
   def test_run
     computer = AOC2019::Common::IntcodeComputer.new('3,0,4,0,99')
+    refute computer.done?
     assert_equal([1], computer.run(1))
     assert_equal([1, 0, 4, 0, 99], computer.memory)
+    assert computer.done?
+    assert_nil computer.run(1)
 
     computer = AOC2019::Common::IntcodeComputer.new('1002,4,3,4,33')
     computer.run(1)

@@ -14,17 +14,21 @@ module AOC2019
       def initialize(prog)
         @memory = prog.split(',').map(&:to_i)
         @_mem_bak = @memory.dup
+        @done = false
         @pc = 0
         @rb = 0
       end
 
       def reset!
         @memory = @_mem_bak.dup
+        @done = false
         @pc = 0
         @rb = 0
       end
 
       def run(*input)
+        return if @done
+
         input.flatten!
         output = []
 
@@ -75,11 +79,16 @@ module AOC2019
             @rb += param(1, modes)
             @pc += 2
           when 99
+            @done = true
             break
           end
         end
 
         output
+      end
+
+      def done?
+        @done
       end
 
       private

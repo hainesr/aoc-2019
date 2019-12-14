@@ -39,7 +39,7 @@ Metrics/PerceivedComplexity:
 
 # Allow long methods
 Metrics/MethodLength:
-  Max: 50
+  Max: 55
   Exclude:
     - 'test/**/*'
     - 'lib/aoc2019/amplification_circuit.rb'
