@@ -15,6 +15,10 @@ module AOC2019
       computer = Common::IntcodeComputer.new(read_input_file)
       puts 'Part 1:'
       computer.run(1)
+
+      computer.reset!
+      puts 'Part 2:'
+      computer.run(2)
     end
   end
 end
