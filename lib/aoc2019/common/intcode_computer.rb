@@ -43,7 +43,10 @@ module AOC2019
             @memory[write_param(3, modes)] = param(1, modes) * param(2, modes)
             @pc += 4
           when 3
-            @memory[write_param(1, modes)] = input.shift
+            value = input.shift
+            break if value.nil?
+
+            @memory[write_param(1, modes)] = value
             @pc += 2
           when 4
             output << param(1, modes)
