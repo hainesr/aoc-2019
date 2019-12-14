@@ -24,7 +24,7 @@ module AOC2019
     'universal_orbit_map',
     'amplification_circuit',
     'space_image_format',
-    nil,
+    'sensor_boost',
     nil,
     nil,
     'n_body_problem'
