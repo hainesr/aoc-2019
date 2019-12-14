@@ -24,23 +24,6 @@ module AOC2019
         @rb = 0
       end
 
-      def param(n, modes)
-        raw = @memory.fetch(@pc + n, 0)
-        case modes[n - 1]
-        when 0
-          @memory.fetch(raw, 0)
-        when 1
-          raw
-        when 2
-          @memory.fetch(raw + @rb, 0)
-        end
-      end
-
-      def write_param(n, modes)
-        raw = @memory.fetch(@pc + n, 0)
-        modes[n - 1] == 2 ? raw + @rb : raw
-      end
-
       def run(*input)
         input.flatten!
         output = []
@@ -94,6 +77,25 @@ module AOC2019
         end
 
         output
+      end
+
+      private
+
+      def param(n, modes)
+        raw = @memory.fetch(@pc + n, 0)
+        case modes[n - 1]
+        when 0
+          @memory.fetch(raw, 0)
+        when 1
+          raw
+        when 2
+          @memory.fetch(raw + @rb, 0)
+        end
+      end
+
+      def write_param(n, modes)
+        raw = @memory.fetch(@pc + n, 0)
+        modes[n - 1] == 2 ? raw + @rb : raw
       end
     end
   end
