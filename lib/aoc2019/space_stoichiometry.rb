@@ -14,6 +14,7 @@ module AOC2019
       recipe = parse(read_input_file)
 
       puts "Part 1: #{cost(recipe, :FUEL, 1)}"
+      puts "Part 2: #{max_fuel(recipe, 1_000_000_000_000)}"
     end
 
     def cost(recipe, name, quantity, need = {}, waste = {})
@@ -37,6 +38,10 @@ module AOC2019
 
       need[name] = 0
       need[:ORE]
+    end
+
+    def max_fuel(recipe, n)
+      (1..n).bsearch { |i| cost(recipe, :FUEL, i) > n } - 1
     end
 
     def parse(input)

@@ -63,11 +63,13 @@ class AOC2019::SpaceStoichiometryTest < Minitest::Test
   def test_2
     recipe = @ss.parse(IN2)
     assert_equal(13_312, @ss.cost(recipe, :FUEL, 1))
+    assert_equal(82_892_753, @ss.max_fuel(recipe, 1_000_000_000_000))
   end
 
   def test_3
     recipe = @ss.parse(IN3)
     assert_equal(2_210_736, @ss.cost(recipe, :FUEL, 1))
+    assert_equal(460_664, @ss.max_fuel(recipe, 1_000_000_000_000))
   end
 
   def test_parse
