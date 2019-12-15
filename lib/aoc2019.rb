@@ -26,7 +26,7 @@ module AOC2019
     'space_image_format',
     'sensor_boost',
     nil,
-    nil,
+    'space_police',
     'n_body_problem',
     'care_package',
     'space_stoichiometry'
