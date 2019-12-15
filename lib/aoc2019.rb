@@ -28,7 +28,8 @@ module AOC2019
     nil,
     nil,
     'n_body_problem',
-    'care_package'
+    'care_package',
+    'space_stoichiometry'
   ].freeze
 
   def self.class_from_day(day)
