@@ -29,7 +29,9 @@ module AOC2019
     'space_police',
     'n_body_problem',
     'care_package',
-    'space_stoichiometry'
+    'space_stoichiometry',
+    nil,
+    'flawed_frequency_transmission'
   ].freeze
 
   def self.class_from_day(day)
