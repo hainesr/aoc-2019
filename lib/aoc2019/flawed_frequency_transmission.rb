@@ -14,6 +14,7 @@ module AOC2019
 
     def run
       puts "Part 1: #{fft(read_input_file, 100)[0..7]}"
+      puts "Part 2: #{upper_fft(read_input_file, 100)}"
     end
 
     def fft(input, n)
@@ -34,6 +35,20 @@ module AOC2019
       end
 
       input.join
+    end
+
+    def upper_fft(input, n)
+      offset = input[0..6].to_i
+      input = (input.chomp.chars.map(&:to_i) * 10_000)[offset..-1]
+
+      n.times do
+        suffix_sum = 0
+        (0..(input.length - 1)).reverse_each do |i|
+          input[i] = suffix_sum = (suffix_sum + input[i]) % 10
+        end
+      end
+
+      input.join[0..7]
     end
 
     def base_digit(multiplier, i)

@@ -30,4 +30,16 @@ class AOC2019::FlawedFrequencyTransmissionTest < Minitest::Test
     assert_equal('73745418', @fft.fft(BIG2, 100)[0..7])
     assert_equal('52432133', @fft.fft(BIG3, 100)[0..7])
   end
+
+  def test_upper_fft
+    assert_equal(
+      '84462026', @fft.upper_fft('03036732577212944063491565474664', 100)
+    )
+    assert_equal(
+      '78725270', @fft.upper_fft('02935109699940807407585447034323', 100)
+    )
+    assert_equal(
+      '53553731', @fft.upper_fft('03081770884921959731165446850517', 100)
+    )
+  end
 end
