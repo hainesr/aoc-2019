@@ -31,7 +31,8 @@ module AOC2019
     'care_package',
     'space_stoichiometry',
     nil,
-    'flawed_frequency_transmission'
+    'flawed_frequency_transmission',
+    'set_and_forget'
   ].freeze
 
   def self.class_from_day(day)
