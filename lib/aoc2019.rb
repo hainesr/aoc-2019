@@ -32,7 +32,9 @@ module AOC2019
     'space_stoichiometry',
     nil,
     'flawed_frequency_transmission',
-    'set_and_forget'
+    'set_and_forget',
+    nil,
+    'tractor_beam'
   ].freeze
 
   def self.class_from_day(day)
