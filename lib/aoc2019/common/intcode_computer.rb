@@ -95,14 +95,16 @@ module AOC2019
 
       def param(n, modes)
         raw = @memory.fetch(@pc + n, 0)
-        case modes[n - 1]
-        when 0
-          @memory.fetch(raw, 0)
-        when 1
-          raw
-        when 2
-          @memory.fetch(raw + @rb, 0)
-        end
+        read = case modes[n - 1]
+               when 0
+                 @memory.fetch(raw, 0)
+               when 1
+                 raw
+               when 2
+                 @memory.fetch(raw + @rb, 0)
+               end
+
+        read.nil? ? 0 : read
       end
 
       def write_param(n, modes)
