@@ -11,7 +11,7 @@ Style/Documentation:
 
 # Allow complex methods
 Metrics/AbcSize:
-  Max: 50
+  Max: 60
   Exclude:
     - 'lib/aoc2019/amplification_circuit.rb'
     - 'lib/aoc2019/common/intcode_computer.rb'
