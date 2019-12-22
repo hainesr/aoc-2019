@@ -34,7 +34,10 @@ module AOC2019
     'flawed_frequency_transmission',
     'set_and_forget',
     nil,
-    'tractor_beam'
+    'tractor_beam',
+    nil,
+    nil,
+    'slam_shuffle'
   ].freeze
 
   def self.class_from_day(day)
