@@ -37,7 +37,8 @@ module AOC2019
     'tractor_beam',
     nil,
     nil,
-    'slam_shuffle'
+    'slam_shuffle',
+    'category_six'
   ].freeze
 
   def self.class_from_day(day)
