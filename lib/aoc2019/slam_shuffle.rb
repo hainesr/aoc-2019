@@ -42,11 +42,11 @@ module AOC2019
 
     def shuffle(s)
       s.each do |op, param|
-        param.nil? ? send(op) : send(op, param)
+        send(op, param)
       end
     end
 
-    def deal
+    def deal(_ = nil)
       @deck.reverse!
     end
 
