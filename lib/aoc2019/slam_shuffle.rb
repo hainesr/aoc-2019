@@ -20,6 +20,24 @@ module AOC2019
       slam = SlamShuffle.read_shuffle(read_input_file)
       shuffle(slam)
       puts "Part 1: #{deck.find_index(2019)}"
+      puts "Part 2: #{part2(slam, 119_315_717_514_047, 101_741_582_076_661)}"
+    end
+
+    def part2(s, num, repeats, pos = 2020)
+      shuffles = {
+        deal: ->(_, m, a, b) { [-a % m, (m - 1 - b) % m] },
+        cut: ->(x, m, a, b) { [a, (b - x) % m] },
+        deal_incr: ->(x, m, a, b) { [(a * x) % m, (b * x) % m] }
+      }
+      a = 1
+      b = 0
+
+      s.each do |op, param|
+        a, b = shuffles[op].call(param, num, a, b)
+      end
+
+      r = (b * (1 - a).pow(num - 2, num)) % num
+      ((pos - r) * a.pow(repeats * (num - 2), num) + r) % num
     end
 
     def shuffle(s)
