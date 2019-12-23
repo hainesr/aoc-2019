@@ -25,7 +25,7 @@ module AOC2019
     'amplification_circuit',
     'space_image_format',
     'sensor_boost',
-    nil,
+    'monitoring_station',
     'space_police',
     'n_body_problem',
     'care_package',
