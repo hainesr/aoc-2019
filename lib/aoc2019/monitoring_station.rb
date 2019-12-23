@@ -17,6 +17,25 @@ module AOC2019
       max_visible = visible.max_by { |a| a[2].length }
 
       puts "Part 1: #{max_visible[2].length}"
+
+      angles = kill_asteroids(max_visible)
+      x, y, = angles.sort_by { |a| a[2] }[199]
+
+      puts "Part 2: #{x * 100 + y}"
+    end
+
+    def kill_asteroids(data)
+      base_x, base_y, asteroids = data
+      asteroids.map do |x, y|
+        dx = x - base_x.to_f
+        dy = y - base_y.to_f
+
+        angle = dx / (dx.abs + dy.abs)
+        angle = -angle + 2 if dy.positive?
+        angle %= 4
+
+        [x, y, angle]
+      end
     end
 
     def visible_asteroids(chart, asteroids)
