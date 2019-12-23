@@ -36,7 +36,7 @@ module AOC2019
     nil,
     'tractor_beam',
     nil,
-    nil,
+    'springdroid_adventure',
     'slam_shuffle',
     'category_six'
   ].freeze
