@@ -18,8 +18,9 @@ module AOC2019
         ]
       }.freeze
 
-      def initialize(map)
+      def initialize(map, walls = '#')
         @map = map
+        @walls = [*walls]
       end
 
       def solve(start_pos, end_pos, ways = :four)
@@ -43,7 +44,7 @@ module AOC2019
 
             next if !(0...@map.length).cover?(y) ||
                     !(0...@map[0].length).cover?(x)
-            next unless @map[y][x].zero?
+            next if @walls.include?(@map[y][x])
 
             children.push Node.new(current_node, [x, y])
           end
