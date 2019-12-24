@@ -38,7 +38,8 @@ module AOC2019
     nil,
     'springdroid_adventure',
     'slam_shuffle',
-    'category_six'
+    'category_six',
+    'planet_of_discord'
   ].freeze
 
   def self.class_from_day(day)
