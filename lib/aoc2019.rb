@@ -30,7 +30,7 @@ module AOC2019
     'n_body_problem',
     'care_package',
     'space_stoichiometry',
-    nil,
+    'oxygen_system',
     'flawed_frequency_transmission',
     'set_and_forget',
     nil,
