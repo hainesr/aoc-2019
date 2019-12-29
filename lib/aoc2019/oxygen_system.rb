@@ -75,6 +75,9 @@ module AOC2019
       astar = Common::AStar.new(map, 0)
       route = astar.solve(start, valve)
       puts "Part 1: #{route.length - 1}"
+
+      route = astar.solve(valve, [7, 11])
+      puts "Part 2: #{route.length - 1}"
     end
 
     def find_exit(droid)
