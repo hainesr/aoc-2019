@@ -33,7 +33,7 @@ module AOC2019
     'oxygen_system',
     'flawed_frequency_transmission',
     'set_and_forget',
-    nil,
+    'many_worlds_interpretation',
     'tractor_beam',
     nil,
     'springdroid_adventure',
