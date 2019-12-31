@@ -26,6 +26,7 @@ Metrics/ClassLength:
   Exclude:
     - 'test/**/*'
     - 'lib/aoc2019/amplification_circuit.rb'
+    - 'lib/aoc2019/many_worlds_interpretation.rb'
     - 'lib/aoc2019/planet_of_discord.rb'
 
 Metrics/CyclomaticComplexity:

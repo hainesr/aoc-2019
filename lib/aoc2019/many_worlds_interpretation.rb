@@ -21,20 +21,26 @@ module AOC2019
 
     def run
       puts "Part 1: #{collect_keys}"
+
+      update_map
+      puts "Part 2: #{collect_keys(['@0', '@1', '@2', '@3'])}"
     end
 
-    def collect_keys(start = '@', got = [], cache = {})
-      cache_key = [start, got.sort.join]
+    def collect_keys(starts = ['@0'], got = [], cache = {})
+      cache_key = [starts.sort.join, got.sort.join]
       return cache[cache_key] if cache.key?(cache_key)
 
-      accessible = keys_accessible_from(start, got)
+      accessible = keys_accessible_from(starts, got)
       if accessible.empty?
         val = 0
       else
         steps = []
 
-        accessible.each do |key, dist|
-          steps << dist + collect_keys(key, got + [key], cache)
+        accessible.each do |robot, key, dist|
+          temp = starts[robot]
+          starts[robot] = key
+          steps << dist + collect_keys(starts, got + [key], cache)
+          starts[robot] = temp
         end
 
         val = steps.min
@@ -43,31 +49,53 @@ module AOC2019
       cache[cache_key] = val
     end
 
-    def keys_accessible_from(start, got = [])
+    def keys_accessible_from(starts, got = [])
       access = []
 
-      @all_routes[start].each do |key, (route, needed)|
-        next if got.include?(key)
+      starts.each_with_index do |start, robot|
+        @all_routes[start].each do |key, (route, needed)|
+          next if got.include?(key)
 
-        access << [key, route.length - 1] if (needed - got).empty?
+          access << [robot, key, route.length - 1] if (needed - got).empty?
+        end
       end
 
       access.select do |a|
+        result = true
         (access - [a]).each do |aa|
-          break false if @all_routes[start][a[0]][0].include?(@keys[aa[0]])
+          result = starts.each do |start|
+            next if @all_routes[start][a[1]].nil?
+            break false if @all_routes[start][a[1]][0].include?(@keys[aa[1]])
+          end
+          break unless result
         end
+        result
       end
+    end
+
+    def update_map
+      x, y = @entrance['@0']
+      @map[y - 1][x - 1..x + 1] = ['@', '#', '@']
+      @map[y][x - 1..x + 1] = ['#', '#', '#']
+      @map[y + 1][x - 1..x + 1] = ['@', '#', '@']
+      @entrance['@0'] = [x - 1, y - 1]
+      @entrance['@1'] = [x + 1, y - 1]
+      @entrance['@2'] = [x - 1, y + 1]
+      @entrance['@3'] = [x + 1, y + 1]
+      @all_routes = find_routes
     end
 
     private
 
     def find_routes
       astar = ::AOC2019::Common::AStar.new(@map, @walls)
-      all_routes = { '@' => {} }
+      all_routes = { '@0' => {}, '@1' => {}, '@2' => {}, '@3' => {} }
 
       @keys.each do |key, loc|
-        route = astar.solve(@entrance, loc)
-        all_routes['@'][key] = [route, keys_needed(route)]
+        @entrance.each do |e, e_loc|
+          route = astar.solve(e_loc, loc)
+          all_routes[e][key] = [route, keys_needed(route)] unless route.nil?
+        end
         all_routes[key] = {}
 
         @keys.each do |k, l|
@@ -75,7 +103,7 @@ module AOC2019
 
           if all_routes[k].nil? || all_routes[k][key].nil?
             route = astar.solve(loc, l)
-            all_routes[key][k] = [route, keys_needed(route)]
+            all_routes[key][k] = [route, keys_needed(route)] unless route.nil?
           else
             route, needed = all_routes[k][key]
             all_routes[key][k] = [route.reverse, needed]
@@ -98,13 +126,13 @@ module AOC2019
 
     def read_map(input)
       map = input.split("\n").map(&:chars)
-      entrance = nil
+      entrance = {}
       keys = {}
       doors = {}
 
       map.each_with_index do |line, y|
         line.each_with_index do |char, x|
-          entrance = [x, y] if char == '@'
+          entrance['@0'] = [x, y] if char == '@'
           keys[char] = [x, y] if ('a'..'z').cover?(char)
           doors[char.downcase] = [x, y] if ('A'..'Z').cover?(char)
         end
